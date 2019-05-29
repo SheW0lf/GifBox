@@ -1,0 +1,22 @@
+.top-bar{
+    width: 100%;
+    height: 9rem;
+    padding: 2rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: indianred;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+
+    &__title{
+        margin: 0;
+        font-size: 4rem;
+        text-transform: uppercase;
+    }
+
+    &__search{
+        width: 33%;
+    }
+}

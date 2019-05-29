@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {hot} from 'react-hot-loader';
 import giphy from '../api/giphy';
 import GifList from '../components/GifList';
-import Search from '../components/Search';
+import TopBar from '../components/TopBar';
 import Loader from '../components/Loader';
 
 
@@ -20,20 +20,24 @@ class App extends Component{
 
     componentDidMount(){
         this.performSearch("cats"); //initial search on page load
+        window.addEventListener('load', () => {
+            this.setState({
+                loading: false
+            })
+        })
     }
 
     performSearch = async query => {
         const response = await giphy.get('/gifs/search', {
             params: {
                 q: query,
-                limit: 24,
+                limit: 20,
                 api_key: key
             }
         });
 
         this.setState({
             gifs: response.data.data,
-            loading: false
         });
     }
 
@@ -41,7 +45,7 @@ class App extends Component{
     render(){
         return(
             <div>
-                <Search onSearch={this.performSearch}/>
+                <TopBar onSearch={this.performSearch}/>
                 {
                     this.state.loading ? <Loader /> : <GifList gifs={this.state.gifs} />
                 }

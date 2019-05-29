@@ -1,25 +1,14 @@
 import React from 'react';
-import Gif from "./Gif";
-import NoGifs from "./NoGifs";
+import Gif from './Gif';
 
 const GifList = props => {
-    const results = props.data;
-    let gifs;
-    if(results.length > 0){
-        gifs = results.map(gif => {
-            <Gif 
-                url={gif.images.fixed_height.url} 
-                title={gif.title} 
-                embed={gif.embed_url} 
-                key={gif.id} 
-            />
-        });
-    }else{
-        gifs = <NoGifs />;
-    }
+    const gifs = props.gifs.map(gif => {
+        return <Gif key={gif.id} url={gif.images.fixed_width.url} title={gif.title} embed={gif.embed_url} height={gif.images.fixed_width.height}/>
+    });
+
     return(
         <div className="gif-list">
-             {gifs}
+            {gifs}
         </div>
     )
 }
