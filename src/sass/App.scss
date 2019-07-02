@@ -1,20 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=ZCOOL+KuaiLe&display=swap');
+
+@import './base/variables';
+@import './base/mixins';
+@import './base/base';
+
+@import './components/gif';
+@import './components/no-gifs';
+@import './components/search';
 @import './components/gifList';
 @import './components/topBar';
 @import './components/spinner';
 
-*, 
-*::before,
-*::after{
-    margin: 0;
-    padding: 0;
-    box-sizing: inherit;
-}
-
-html{
-    font-size: 62.5%;
-}
-
-body{
-    box-sizing: border-box;
-    background-color: black;
-}

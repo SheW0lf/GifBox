@@ -4,30 +4,38 @@ class Gif extends Component{
     constructor(props){
         super(props);
         this.state = {
-            spans: 0
+            spans: 0,
         }
 
         this.gifRef = React.createRef();
+        this.imgRef = React.createRef();
     }
 
     componentDidMount(){
-        this.gifRef.current.addEventListener('load', this.setSpans);
+        this.imgRef.current.addEventListener('load', this.setSpans); //add event listener to imgRef on load
+        window.addEventListener('resize', this.setSpans); //add event listener when window is resized
     }
 
+    //function to calculate the height of each returned gif and determine how many grid rows the gif will span in order to create the masonry tile layout
     setSpans = () => {
-        const height = (this.gifRef.current.clientHeight) + 100;
+        const height = this.gifRef.current.clientHeight;
         const span = Math.ceil(height / 10);
         this.setState({
             spans: span
-        });
+        }, () => this.props.onLoad());
+    }
+
+    componentWillUnmount(){
+        this.imgRef.current.removeEventListener('load', this.setSpans);
+        window.removeEventListener('resize', this.setSpans);
     }
 
     render(){
         return(
             <div className="gif" style={{gridRowEnd: `span ${this.state.spans}`}}>
-                <div className="card">
+                <div className="card" ref={this.gifRef}>
                     <div className="card-image waves-effect waves-block waves-light">
-                        <img className="activator" src={this.props.url} ref={this.gifRef}/>
+                        <img className="activator" src={this.props.url} ref={this.imgRef}/>
                     </div>
                     <div className="card-content">
                         <span className="card-title activator">{this.props.title}<i className="material-icons right">more_vert</i></span>

@@ -9,11 +9,20 @@
     position: fixed;
     top: 0;
     z-index: 100;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.5);
+
+    @include responsive(sm){
+        flex-direction: column;
+        justify-content: center;
+        height: 12rem;
+    }
 
     &__title{
         margin: 0;
-        font-size: 4rem;
+        font-size: 5rem;
         text-transform: uppercase;
+        font-weight: bold;
+        font-family: 'ZCOOL KuaiLe', cursive;
     }
 
     &__search{

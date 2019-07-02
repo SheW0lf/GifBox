@@ -1,0 +1,51 @@
+//Had to add important to the styles to override the materialize styles
+
+.searchbar{
+    width: 30% !important;
+    @include responsive(lg){
+        width: 50% !important;
+    }
+
+    @include responsive(md){
+        width: 60% !important;
+    }
+
+    @include responsive(sm){
+        width: 100% !important;
+    }
+
+    &__form{
+        width: 100% !important;
+        display: flex !important;
+        align-items: center;
+        justify-content: flex-end !important;
+    }
+
+    &__input{
+        width: 80% !important;
+        padding: 1rem !important;
+        transition: all .3s !important;
+        border-radius: 3px !important;
+        border: none !important;
+        background-color: white !important;
+        margin: 0 !important;
+
+        @include responsive(sm){
+            width: 100% !important;
+        }
+
+        &:focus{
+            outline: none !important;
+            width: 100% !important;
+            box-shadow: 0 .5rem 1rem rgba($gray, .5) !important;
+        }
+    }
+
+    &__icon{
+        font-size: 2rem !important;
+        display: flex !important;
+        align-items: center !important;
+        margin-left: -3rem !important;
+    }
+
+}

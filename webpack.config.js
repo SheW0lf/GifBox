@@ -13,37 +13,55 @@ module.exports = {
                 options: { presets: ["@babel/env"] }
             },
             {
-                test: /\.(png|svg|jpg|gif)$/,
+                test: /\.(png|svg|jpe?g|gif)$/,
                 use:[
                     {
-                        loader: "url-loader",
+                        loader: "file-loader",
                         options: {
-                            limit: 8000,
-                            name: "img/[name].[ext]"
+                            outputPath: 'img',
+                            name: "[name].[ext]"                        
                         }
                     }
                 ]
             },
             {
                 test: /\.scss$/,
-                use: ["style-loader", "css-loader", "sass-loader"]
+                use: [
+                    {
+                        loader: 'style-loader',
+                    },
+                    { 
+                        loader: "css-loader",
+                        options: {
+                            url: true
+                        }
+                    }, 
+                    {
+                        loader: "resolve-url-loader"
+                    },
+                    { 
+                        loader: "sass-loader"
+                    }
+                ]
             }
         ]
     },
-
-    resolve: { extensions: ["*", ".js", ".jsx"] },
+    resolve: { 
+        extensions: ["*", ".js", ".jsx"], 
+    },
     output: {
-        path: path.resolve(__dirname, "dist/"),
-        publicPath: "/dist/",
-        filename: "bundle.js"
+        path: path.resolve(__dirname, "build"),
+        filename: "./js/bundle.js",
+        publicPath: "/build/"
     },
-
     devServer: {
-        contentBase: path.join(__dirname, "public/"),
+        contentBase: path.join(__dirname, "public"),
+        host: "localhost",
         port: 3000,
-        publicPath: "http://localhost:3000/dist/",
-        hotOnly: true
+        hot: true
     },
 
-    plugins: [new webpack.HotModuleReplacementPlugin()]
+    plugins: [
+        new webpack.HotModuleReplacementPlugin()
+    ]
 };
