@@ -1,12 +1,28 @@
-# React App Template
-A simple template made to build frontend react apps with support for Sass.
+# Gif Box
+A Front end web application built with React and the Giphy API
 
-## Use
-Place all files to be served into the `src` folder. The `index.js` file is the main entry file for the app. 
-
-## Run 
-1. Run `npm install` 
-2. Run `npm run dev` to start development server. 
-
-## Notes
-There is a `npm run build` command in package.json, however it has not been properly configured for bundling images properly. Until it has been fixed, it is best to treat this as a development template only. Images will still work properly in development if placed into the `img` folder.
+## Check it out! 
+1. Fork this repository (Click the fork button at the top of the page).
+2. Clone the fork to your local machine.
+```javascript
+git clone https://github.com/${your_username}/GifBox
+```
+3. Install the npm dependencies from your local copy path
+```javascript
+npm install
+```
+4. Get an API key from Giphy
+```code
+https://developers.giphy.com/docs/sdk/
+```
+5. replace the filler text in /config/keys.js with your api key
+```javascript
+module.exports = {
+    key: 'Your key here'
+}
+```
+6. Save the file, and run the application
+```javascript
+> npm run dev
+```
+Any comments, questions, or bugs, don't be afraid to let me know! 
